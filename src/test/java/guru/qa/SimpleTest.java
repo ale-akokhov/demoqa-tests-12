@@ -13,13 +13,13 @@ public class SimpleTest {
 
     @BeforeEach
     void openYaPage() {
-        System.out.println("###      @BeforeEach");
+        System.out.println("###    @BeforeEach");
         //Selenide.open("https://ya.ru");
     }
 
     @AfterEach
     void closeYaPage() {
-        System.out.println("###      @AfterEach");
+        System.out.println("###    @AfterEach");
         //WebDriverRunner.closeWindow();
     }
 
