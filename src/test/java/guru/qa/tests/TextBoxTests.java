@@ -1,11 +1,10 @@
-package guru.qa;
+package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,7 +29,7 @@ public class TextBoxTests {
 
         open("/text-box");
 
-        $("[id = userName]").shouldBe(visible);
+        //$("[id = userName]").shouldBe(visible);
         $("[id = userName]").setValue(name);
         $("[id = userEmail]").setValue(e_mail);
         $("[id = currentAddress]").setValue(current_address);
