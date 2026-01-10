@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -22,10 +24,12 @@ public class RegistrationForm {
         String firstName = "Ivan",
                 lastName = "Ivanov",
                 email = "i_ivanov@gamil.com",
-                current_address = "London",
+                current_address = "Baker st. 24, London, Great Britain",
                 mobileNumber = "1234567890",
                 yearOfBirth = "1988",
                 monthOfBirth = "April";
+
+        File file = new File("src/test/resources/3f4f0067d3f1a894c673f3dc39cea145.jpg");
 
 
 
@@ -51,12 +55,13 @@ public class RegistrationForm {
         $(".custom-checkbox:nth-child(1) > .custom-control-label").click();
         $(".custom-checkbox:nth-child(2) > .custom-control-label").click();
         $(".custom-checkbox:nth-child(3) > .custom-control-label").click();
-        $("#uploadPicture").click();
-        //$("#uploadPicture").setValue("C:\\Users\\Asus\\Desktop\\ExonGroup\\Картинки\\3f4f0067d3f1a894c673f3dc39cea145.jpg");
-
-        //$("#currentAddress").setValue(current_address);
-        //$("[id = permanentAddress]").setValue(permanent_address);
-       // $("[id = submit]").click();
+        $("#uploadPicture").uploadFile(file);
+        $("#currentAddress").setValue(current_address);
+        //$(".css-1pahdxg-control > .css-1hwfws3").click();
+        //$("#react-select-3-option-2").click();
+        //$(".css-1pahdxg-control > .css-1hwfws3").click();
+        //$("#react-select-4-option-1").click();
+        $("[id = submit]").click();
 
         //$("[id = output]").shouldHave(text("Name:" + name),
           //      text("Email:" + email),
