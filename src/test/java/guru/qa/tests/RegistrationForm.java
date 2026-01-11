@@ -14,9 +14,9 @@ import static com.codeborne.selenide.Selenide.open;
 public class RegistrationForm {
     @BeforeAll
     static void setUp() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
+        //Configuration.browserSize = "1920x1080";
     }
     @Test
     void successfulTest() {
@@ -63,6 +63,8 @@ public class RegistrationForm {
         $("#city").click();
         $("#stateCity-wrapper").$(byText(city)).click();
         $("[id = submit]").click();
+
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
         $(".table-responsive").shouldHave(text(firstName + " " + lastName),
                 text(email),
