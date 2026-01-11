@@ -1,6 +1,7 @@
 package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
+import guru.qa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,40 +12,43 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class RegistrationForm {
+public class RegistrationFormWithPageObjectsTests {
     @BeforeAll
     static void setUp() {
         //Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         //Configuration.browserSize = "1920x1080";
     }
+
+    RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+
     @Test
     void successfulTest() {
 
         String firstName = "Ivan",
                 lastName = "Ivanov",
                 email = "i_ivanov@gamil.com",
-                current_address = "Baker st. 24, London, Great Britain",
+                gender = "Female",  // Male || Female || Other
                 mobileNumber = "1234567890",
                 dayOfBirth = "14",
-                yearOfBirth = "1988",
                 monthOfBirth = "April",
-                state = "Rajasthan",
-                city = "Jaipur",
+                yearOfBirth = "1988",
                 subject1 = "Arts",
                 subject2 = "Maths",
-                gender = "Female",
                 hobby1 = "Sports",
-                hobby2 = "Music";
+                hobby2 = "Music",
+                current_address = "Baker st. 24, London, Great Britain",
+                state = "Rajasthan",
+                city = "Jaipur";
 
         File file = new File("src/test/resources/picture1.jpg");
 
-        open("/automation-practice-form");
+        registrationFormPage.openPage()
+                            .setFirstName(firstName)
+                            .setLastName(lastName)
+                            .setEmail(email)
+                            .setGender(gender);
 
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue(email);
-        $("#genterWrapper").$(byText(gender)).click();
         $("#userNumber").setValue(mobileNumber);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
@@ -62,7 +66,7 @@ public class RegistrationForm {
         $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
         $("#stateCity-wrapper").$(byText(city)).click();
-        $("[id = submit]").click();
+        $("#submit").click();
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
