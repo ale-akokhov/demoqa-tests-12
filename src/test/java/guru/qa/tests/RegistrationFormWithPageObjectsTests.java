@@ -13,14 +13,16 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationFormWithPageObjectsTests {
+
+
+    RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+
     @BeforeAll
     static void setUp() {
         //Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         //Configuration.browserSize = "1920x1080";
     }
-
-    RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @Test
     void successfulTest() {

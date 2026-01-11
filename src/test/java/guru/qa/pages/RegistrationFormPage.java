@@ -34,4 +34,6 @@ public class RegistrationFormPage {
         $("#genterWrapper").$(byText(value)).click();
         return this;
     }
+
+
 }
