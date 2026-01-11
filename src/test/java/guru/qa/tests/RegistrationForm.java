@@ -13,19 +13,19 @@ import static com.codeborne.selenide.Selenide.open;
 public class RegistrationForm {
     @BeforeAll
     static void setUp() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
     }
     @Test
-    void registrationForm() {
+    void successfulTest() {
 
         String firstName = "Ivan",
                 lastName = "Ivanov",
                 email = "i_ivanov@gamil.com",
                 current_address = "Baker st. 24, London, Great Britain",
                 mobileNumber = "1234567890",
-                dayOfBirth = "14",
+                //dayOfBirth = "14",
                 yearOfBirth = "1988",
                 monthOfBirth = "April",
                 state = "Rajasthan",
