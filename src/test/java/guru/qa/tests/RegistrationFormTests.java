@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class RegistrationForm {
+public class RegistrationFormTests {
     @BeforeAll
     static void setUp() {
         //Configuration.holdBrowserOpen = true;
@@ -62,7 +62,7 @@ public class RegistrationForm {
         $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
         $("#stateCity-wrapper").$(byText(city)).click();
-        $("[id = submit]").click();
+        $("#submit").click();
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
