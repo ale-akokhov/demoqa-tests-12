@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -31,7 +32,10 @@ public class RegistrationForm {
                 state = "Rajasthan",
                 city = "Jaipur",
                 subject1 = "Arts",
-                subject2 = "Maths";
+                subject2 = "Maths",
+                gender = "Female",
+                hobby1 = "Sports",
+                hobby2 = "Music";
 
         File file = new File("src/test/resources/picture1.jpg");
 
@@ -40,7 +44,7 @@ public class RegistrationForm {
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(email);
-        $(".custom-radio:nth-child(1) > .custom-control-label").click();
+        $("#genterWrapper").$(byText(gender)).click();
         $("#userNumber").setValue(mobileNumber);
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
@@ -50,15 +54,14 @@ public class RegistrationForm {
         $("#subjectsInput").pressEnter();
         $("#subjectsInput").setValue(subject2);
         $("#subjectsInput").pressEnter();
-        $(".custom-checkbox:nth-child(1) > .custom-control-label").click();
-        $(".custom-checkbox:nth-child(2) > .custom-control-label").click();
-        $(".custom-checkbox:nth-child(3) > .custom-control-label").click();
+        $("#hobbiesWrapper").$(byText(hobby1)).click();
+        $("#hobbiesWrapper").$(byText(hobby2)).click();
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").setValue(current_address);
-        $("#react-select-3-input").setValue(state);
-        $("#react-select-3-input").pressEnter();
-        $("#react-select-4-input").setValue(city);
-        $("#react-select-4-input").pressEnter();
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText(state)).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText(city)).click();
         $("[id = submit]").click();
 
         $(".table-responsive").shouldHave(text(firstName + " " + lastName),
@@ -67,7 +70,8 @@ public class RegistrationForm {
                 text(mobileNumber),
                 text(subject1 + ", " + subject2),
                 text(state + " " + city),
-                text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-        );
+                text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth),
+                text(gender),
+                text(hobby1 + ", " + hobby2));
     }
 }
