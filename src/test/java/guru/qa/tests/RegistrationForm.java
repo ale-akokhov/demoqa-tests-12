@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class RegistrationForm {
     @BeforeAll
     static void setUp() {
-        //Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
     }
@@ -25,7 +25,7 @@ public class RegistrationForm {
                 email = "i_ivanov@gamil.com",
                 current_address = "Baker st. 24, London, Great Britain",
                 mobileNumber = "1234567890",
-                //dayOfBirth = "14",
+                dayOfBirth = "14",
                 yearOfBirth = "1988",
                 monthOfBirth = "April",
                 state = "Rajasthan",
@@ -45,7 +45,7 @@ public class RegistrationForm {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
-        $(".react-datepicker__day--014").click();
+        $(".react-datepicker__day--0" + dayOfBirth).click();
         $("#subjectsInput").setValue(subject1);
         $("#subjectsInput").pressEnter();
         $("#subjectsInput").setValue(subject2);
@@ -66,6 +66,8 @@ public class RegistrationForm {
                 text(current_address),
                 text(mobileNumber),
                 text(subject1 + ", " + subject2),
-                text(state + " " + city));
+                text(state + " " + city),
+                text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+        );
     }
 }
