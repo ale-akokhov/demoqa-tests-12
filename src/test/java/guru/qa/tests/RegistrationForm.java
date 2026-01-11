@@ -9,7 +9,6 @@ import java.io.File;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegistrationForm {
     @BeforeAll
@@ -26,54 +25,47 @@ public class RegistrationForm {
                 email = "i_ivanov@gamil.com",
                 current_address = "Baker st. 24, London, Great Britain",
                 mobileNumber = "1234567890",
+                dayOfBirth = "14",
                 yearOfBirth = "1988",
-                monthOfBirth = "April";
+                monthOfBirth = "April",
+                state = "Rajasthan",
+                city = "Jaipur",
+                subject1 = "Arts",
+                subject2 = "Maths";
 
-        File file = new File("src/test/resources/3f4f0067d3f1a894c673f3dc39cea145.jpg");
-
-
+        File file = new File("src/test/resources/picture1.jpg");
 
         open("/automation-practice-form");
 
-        //$("[id = userName]").shouldBe(visible);
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(email);
         $(".custom-radio:nth-child(1) > .custom-control-label").click();
         $("#userNumber").setValue(mobileNumber);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
-        $(".react-datepicker__month-select > option:nth-child(4)").click();
-        $(".react-datepicker__year-select").click();
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
-        $(".react-datepicker__year-select > option:nth-child(89)").click();
         $(".react-datepicker__day--014").click();
-        $(".subjects-auto-complete__value-container").click();
-        $("#subjectsInput").setValue("Arts");
+        $("#subjectsInput").setValue(subject1);
+        $("#subjectsInput").pressEnter();
+        $("#subjectsInput").setValue(subject2);
         $("#subjectsInput").pressEnter();
         $(".custom-checkbox:nth-child(1) > .custom-control-label").click();
         $(".custom-checkbox:nth-child(2) > .custom-control-label").click();
         $(".custom-checkbox:nth-child(3) > .custom-control-label").click();
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").setValue(current_address);
-        //$(".css-1pahdxg-control > .css-1hwfws3").click();
-        //$("#react-select-3-option-2").click();
-        //$(".css-1pahdxg-control > .css-1hwfws3").click();
-        //$("#react-select-4-option-1").click();
+        $("#react-select-3-input").setValue(state);
+        $("#react-select-3-input").pressEnter();
+        $("#react-select-4-input").setValue(city);
+        $("#react-select-4-input").pressEnter();
         $("[id = submit]").click();
 
-        //$("[id = output]").shouldHave(text("Name:" + name),
-          //      text("Email:" + email),
-         //       text("Current Address :" + current_address),
-          //      text("Permananet Address :" + permanent_address));
-
-        //$("[id = output] [id = name]").shouldHave(text(name));
-       // $("[id = output]").$(" [id = name]").shouldHave(text(name));
-      //  $("p[id = permanentAddress]").shouldHave(text("Permananet Address :" + permanent_address));
-
-     //   String expectedPermanentAddress = "Permananet Address :" + permanent_address;
-     //   String actualPermanentAddress = $("p[id = permanentAddress]").text();
-//assertEquals(expectedPermanentAddress, actualPermanentAddress);
+        $(".table-responsive").shouldHave(text(firstName + " " + lastName),
+                text(email),
+                text(current_address),
+                text(mobileNumber),
+                text(subject1 + ", " + subject2),
+                text(state + " " + city));
     }
 }
