@@ -1,6 +1,7 @@
 package guru.qa.pages;
 
 import guru.qa.pages.components.CalenderComponent;
+import guru.qa.pages.components.ResultsTableComponent;
 
 import java.io.File;
 
@@ -11,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class RegistrationFormPage {
 
     CalenderComponent calenderComponent = new CalenderComponent();
-
+    ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
 
     File file = new File("src/test/resources/picture1.jpg");
 
@@ -50,26 +51,24 @@ public class RegistrationFormPage {
 
     public RegistrationFormPage setDateOfBirth(String month, String year, String day) {
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--0" + day).click();
+        calenderComponent.setDate(month, year, day);
         return this;
     }
 
-    public RegistrationFormPage setSubjects(String value1, String value2) {
-        $("#subjectsInput").setValue(value1);
+    public RegistrationFormPage setSubjects(String subject1, String subject2) {
+        $("#subjectsInput").setValue(subject1);
         $("#subjectsInput").pressEnter();
-        $("#subjectsInput").setValue(value2);
+        $("#subjectsInput").setValue(subject2);
         $("#subjectsInput").pressEnter();
         return this;
     }
-    public RegistrationFormPage setHobbies(String value3, String value4) {
-        $("#hobbiesWrapper").$(byText(value3)).click();
-        $("#hobbiesWrapper").$(byText(value4)).click();
+    public RegistrationFormPage setHobbies(String hobby1, String hobby2) {
+        $("#hobbiesWrapper").$(byText(hobby1)).click();
+        $("#hobbiesWrapper").$(byText(hobby2)).click();
         return this;
     }
 
-    public RegistrationFormPage uploadPicture() {
+    public RegistrationFormPage uploadPicture(File  file) {
         $("#uploadPicture").uploadFile(file);
         return this;
     }
@@ -79,16 +78,25 @@ public class RegistrationFormPage {
         return this;
     }
 
-    public RegistrationFormPage setStateAndCity(String value5, String value6) {
+    public RegistrationFormPage setStateAndCity(String state, String city) {
         $("#state").click();
-        $("#stateCity-wrapper").$(byText(value5)).click();
+        $("#stateCity-wrapper").$(byText(state)).click();
         $("#city").click();
-        $("#stateCity-wrapper").$(byText(value6)).click();
+        $("#stateCity-wrapper").$(byText(city)).click();
         return this;
     }
 
     public RegistrationFormPage submit() {
         $("#submit").click();
+        return this;
+    }
+
+    public RegistrationFormPage checkTableTitle(String value) {
+        resultsTableComponent.checkTableTitle(value);
+        return this;
+    }
+    public RegistrationFormPage checkResult(String key, String value) {
+        resultsTableComponent.checkResult(key, value);
         return this;
     }
 

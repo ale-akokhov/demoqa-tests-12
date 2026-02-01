@@ -12,7 +12,7 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
-        Configuration.holdBrowserOpen = true;
+        //Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
     }
@@ -31,7 +31,8 @@ public class TestBase {
             hobby2 = "Music",
             current_address = "Baker st. 24, London, Great Britain",
             state = "Rajasthan",
-            city = "Jaipur";
+            city = "Jaipur",
+            resultTableTitle = "Thanks for submitting the form";
 
     File file = new File("src/test/resources/picture1.jpg");
 
