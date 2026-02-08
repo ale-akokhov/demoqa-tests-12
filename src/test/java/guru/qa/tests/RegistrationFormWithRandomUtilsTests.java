@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class RegistrationFormTests {
+public class RegistrationFormWithRandomUtilsTests {
     @BeforeAll
     static void setUp() {
         //Configuration.holdBrowserOpen = true;
