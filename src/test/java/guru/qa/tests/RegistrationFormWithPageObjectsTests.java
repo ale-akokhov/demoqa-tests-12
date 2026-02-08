@@ -1,30 +1,33 @@
 package guru.qa.tests;
 import org.junit.jupiter.api.Test;
+
+import static guru.qa.tests.TestData.*;
+
 public class RegistrationFormWithPageObjectsTests extends TestBase {
     @Test
     void successfulTest() {
         registrationFormPage.openPage()
-                            .setFirstName(firstName)
-                            .setLastName(lastName)
-                            .setEmail(email)
-                            .setGender(gender)
-                            .setMobileNumber(mobileNumber)
-                            .setDateOfBirth(monthOfBirth, yearOfBirth, dayOfBirth)
-                            .setSubjects(subject1, subject2)
-                            .setHobbies(hobby1, hobby2)
-                            .uploadPicture(file)
-                            .setCurrentAddress(current_address)
-                            .setStateAndCity(state, city)
+                            .setFirstName(FIRST_NAME)
+                            .setLastName(LAST_NAME)
+                            .setEmail(E_MAIL)
+                            .setGender(GENDER)
+                            .setMobileNumber(MOBILE_NUMBER)
+                            .setDateOfBirth(MONTH_OF_BIRTH, YEAR_OF_BIRTH, DAY_OF_BIRTH)
+                            .setSubjects(SUBJECT_1, SUBJECT_2)
+                            .setHobbies(HOBBY_1, HOBBY_2)
+                            .uploadPicture(FILE)
+                            .setCurrentAddress(CURRENT_ADDRESS)
+                            .setStateAndCity(STATE, CITY)
                             .submit()
-                            .checkTableTitle(resultTableTitle)
-                            .checkResult("Student Name", firstName + " " + lastName)
-                            .checkResult("Student Email", email)
-                            .checkResult("Gender", gender)
-                            .checkResult("Mobile", mobileNumber)
-                            .checkResult("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-                            .checkResult("Subjects", subject1 + ", " + subject2)
-                            .checkResult("Hobbies", hobby1 + ", " + hobby2)
-                            .checkResult("Address", current_address)
-                            .checkResult("State and City", state + " " + city);
+                            .checkTableTitle(RESULT_TABLE_TITLE)
+                            .checkResult("Student Name", FIRST_NAME + " " + LAST_NAME)
+                            .checkResult("Student Email", E_MAIL)
+                            .checkResult("Gender", GENDER)
+                            .checkResult("Mobile", MOBILE_NUMBER)
+                            .checkResult("Date of Birth", DAY_OF_BIRTH + " " + MONTH_OF_BIRTH + "," + YEAR_OF_BIRTH)
+                            .checkResult("Subjects", SUBJECT_1 + ", " + SUBJECT_2)
+                            .checkResult("Hobbies", HOBBY_1 + ", " + HOBBY_2)
+                            .checkResult("Address", CURRENT_ADDRESS)
+                            .checkResult("State and City", STATE + " " + CITY);
     }
 }
