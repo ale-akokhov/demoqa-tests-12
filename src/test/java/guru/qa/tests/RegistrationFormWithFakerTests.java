@@ -1,19 +1,24 @@
 package guru.qa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static utils.RandomUtils.generateRandomEmail;
 import static utils.RandomUtils.getRandomString;
 
-public class RegistrationFormWithRandomUtilsTests {
+public class RegistrationFormWithFakerTests {
+
+    Faker faker = new Faker();
+    Faker fakerRu = new Faker(new Locale("ru"));
+
     @BeforeAll
     static void setUp() {
         Configuration.holdBrowserOpen = true;
@@ -23,11 +28,11 @@ public class RegistrationFormWithRandomUtilsTests {
     @Test
     void successfulTest() {
 
-        String firstName = getRandomString(10),
-                lastName = getRandomString(10),
-                email = generateRandomEmail(),
-                current_address = "Baker st. 24, London, Great Britain",
-                mobileNumber = "1234567890",
+        String firstName = fakerRu.address().firstName(),
+                lastName = fakerRu.address().lastName(),
+                email = faker.internet().emailAddress(),
+                current_address = fakerRu.address().fullAddress(),
+                mobileNumber = faker.phoneNumber().subscriberNumber(10),
                 dayOfBirth = "14",
                 yearOfBirth = "1988",
                 monthOfBirth = "April",
